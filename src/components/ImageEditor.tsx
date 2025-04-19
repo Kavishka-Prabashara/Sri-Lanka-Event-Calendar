@@ -1,15 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ImageEditor = ({ selectedImage }) => {
+interface SelectedImage {
+    src: string;
+    [key: string]: any;
+}
+
+interface ImageEditorProps {
+    selectedImage: SelectedImage;
+    onRender?: (dataUrl: string) => void;
+}
+
+const ImageEditor: React.FC<ImageEditorProps> = ({ selectedImage, onRender }) => {
     const [senderName, setSenderName] = useState('');
     const [receiverName, setReceiverName] = useState('');
-    const [renderedImage, setRenderedImage] = useState(null);
-    const canvasRef = useRef(null);
+    const [renderedImage, setRenderedImage] = useState<string | null>(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {
         if (selectedImage) {
             const canvas = canvasRef.current;
+            if (!canvas) return;
             const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
             const img = new Image();
 
             img.onload = () => {
@@ -17,19 +30,16 @@ const ImageEditor = ({ selectedImage }) => {
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0);
 
-                // පෙළෙහි විලාසය සකසන්න
                 ctx.font = '24px sans-serif';
                 ctx.fillStyle = 'black';
                 ctx.textAlign = 'center';
 
-                // යවන්නාගේ නම රූපයේ උඩින් ලියන්න
-                ctx.fillText(senderName, canvas.width / 2, 50); // පිහිටීම වෙනස් කළ හැක
+                ctx.fillText(senderName, canvas.width / 2, 50);
+                ctx.fillText(receiverName, canvas.width / 2, canvas.height - 30);
 
-                // ලබන්නාගේ නම රූපයේ පහළින් ලියන්න
-                ctx.fillText(receiverName, canvas.width / 2, canvas.height - 30); // පිහිටීම වෙනස් කළ හැක
-
-                // රූපය දත්ත URL එකක් ලෙස සකසන්න
-                setRenderedImage(canvas.toDataURL('image/png'));
+                const dataUrl = canvas.toDataURL('image/png');
+                setRenderedImage(dataUrl);
+                onRender?.(dataUrl); // Call callback if provided
             };
 
             img.src = selectedImage.src;
@@ -43,7 +53,9 @@ const ImageEditor = ({ selectedImage }) => {
             {selectedImage && (
                 <div className="mb-4">
                     <canvas ref={canvasRef} className="hidden" />
-                    {renderedImage && <img src={renderedImage} alt="Edited Image" className="max-w-full h-auto border rounded" />}
+                    {renderedImage && (
+                        <img src={renderedImage} alt="Edited" className="max-w-full h-auto border rounded" />
+                    )}
                 </div>
             )}
             <div className="mb-2">

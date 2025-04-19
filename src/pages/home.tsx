@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ImageGallery from '../components/ImageGallery';
 import ImageEditor from '../components/ImageEditor';
 import DownloadButton from '../components/DownloadButtons';
 
+// ඔබගේ ImageGallery සංරචකයෙන් එන රූප වස්තුව සඳහා වර්ගයක් නිර්වචනය කරන්න
+interface ImageObject {
+    src: string;
+    alt: string;
+
+    // අවශ්‍ය අනෙකුත් ගුණාංග මෙහි එක් කරන්න
+}
+
 const Home = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [renderedImage, setRenderedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState<ImageObject | null>(null);
+    const [renderedImage, setRenderedImage] = useState<string | null>(null);
     const [whatsappNumber, setWhatsappNumber] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleImageSelect = (image) => {
+    const handleImageSelect = (image: ImageObject) => {
         setSelectedImage(image);
         setRenderedImage(null); // නව රූපයක් තේරූ විට පෙර රූපය ඉවත් කරන්න
     };
 
-    // ImageEditor වෙතින් සංස්කරණය කළ රූපය ලබා ගන්නා callback එකක්
-    const handleRenderedImage = (dataURL) => {
+    // ImageEditor වෙතින් එන dataURL එක string එකක් විය යුතුයි
+    const handleRenderedImage = (dataURL: string) => {
         setRenderedImage(dataURL);
     };
 

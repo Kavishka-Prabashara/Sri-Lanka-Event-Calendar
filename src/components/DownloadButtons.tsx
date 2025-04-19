@@ -1,11 +1,15 @@
-/*import React from 'react';*/
+import React from 'react';
 
-const DownloadButton = ({ renderedImage }) => {
+interface DownloadButtonProps {
+    renderedImage: string | null;
+}
+
+const DownloadButton: React.FC<DownloadButtonProps> = ({ renderedImage }) => {
     const handleDownload = () => {
         if (renderedImage) {
             const link = document.createElement('a');
             link.href = renderedImage;
-            link.download = 'customized_image.png'; // බාගත වන ගොනුවේ නම
+            link.download = 'customized_image.png';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
