@@ -11,11 +11,13 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ onImageSelect }) => {
             id: 1,
             src: 'https://images.nightcafe.studio/jobs/UDPA2z6gkPAebYAELcNO/UDPA2z6gkPAebYAELcNO--1--mvzt5.jpg?tr=w-1600,c-at_max',
             name: 'Image 1',
+            alt: 'Image 1 description',
         },
         {
             id: 2,
             src: 'https://images.nightcafe.studio/jobs/UDPA2z6gkPAebYAELcNO/UDPA2z6gkPAebYAELcNO--1--mvzt5.jpg?tr=w-1600,c-at_max',
             name: 'Image 2',
+            alt: 'Image 2 description',
         },
     ]);
 

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
 interface SelectedImage {
     src: string;
-    [key: string]: any;
+    // Consider if you can be more specific about other potential properties
+    // [key: string]: any;
 }
 
 interface ImageEditorProps {
@@ -46,7 +47,7 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ selectedImage, onRender }) =>
         } else {
             setRenderedImage(null);
         }
-    }, [selectedImage, senderName, receiverName]);
+    }, [selectedImage, senderName, receiverName, onRender]);
 
     return (
         <div>
