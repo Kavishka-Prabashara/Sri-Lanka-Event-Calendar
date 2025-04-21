@@ -1,103 +1,28 @@
-import { useState } from 'react';
-import ImageGallery from '../components/ImageGallery';
-import ImageEditor from '../components/ImageEditor';
-import DownloadButton from '../components/DownloadButtons';
+import bgImage from '..//assets/bg.jpg'; // Adjust the path to your actual image location
 
-// ඔබගේ ImageGallery සංරචකයෙන් එන රූප වස්තුව සඳහා වර්ගයක් නිර්වචනය කරන්න
-interface ImageObject {
-    src: string;
-    alt: string;
-
-    // අවශ්‍ය අනෙකුත් ගුණාංග මෙහි එක් කරන්න
-}
-
-const Home = () => {
-    const [selectedImage, setSelectedImage] = useState<ImageObject | null>(null);
-    const [renderedImage, setRenderedImage] = useState<string | null>(null);
-    const [whatsappNumber, setWhatsappNumber] = useState('');
-    const [email, setEmail] = useState('');
-
-    const handleImageSelect = (image: ImageObject) => {
-        setSelectedImage(image);
-        setRenderedImage(null); // නව රූපයක් තේරූ විට පෙර රූපය ඉවත් කරන්න
-    };
-
-    // ImageEditor වෙතින් එන dataURL එක string එකක් විය යුතුයි
-    const handleRenderedImage = (dataURL: string) => {
-        setRenderedImage(dataURL);
-    };
-
-    const handleWhatsappShare = () => {
-        if (renderedImage && whatsappNumber) {
-            const message = `ඔබ වෙනුවෙන් සාදන ලද රූපය මෙන්න!`;
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message + ' ' + renderedImage)}`;
-            window.open(whatsappLink, '_blank');
-        } else {
-            alert('කරුණාකර රූපයක් සාදා WhatsApp අංකය ඇතුළත් කරන්න.');
-        }
-    };
-
-    const handleEmailShare = () => {
-        if (renderedImage && email) {
-            const subject = 'ඔබ වෙනුවෙන් සාදන ලද රූපය';
-            const body = `ඔබ වෙනුවෙන් සාදන ලද රූපය ඇමුණා ඇත.\n\n${renderedImage}`;
-            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.open(mailtoLink, '_blank');
-        } else {
-            alert('කරුණාකර රූපයක් සාදා ඊමේල් ලිපිනය ඇතුළත් කරන්න.');
-        }
-    };
-
+const Homes = () => {
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">පින්තූර සංස්කාරකය</h1>
-            <ImageGallery onImageSelect={handleImageSelect} />
-
-            {selectedImage && (
-                <div className="mt-4 border p-4 rounded">
-                    <h2 className="text-xl font-semibold mb-2">රූපය සංස්කරණය කරන්න</h2>
-                    <ImageEditor selectedImage={selectedImage} onRender={handleRenderedImage} />
-                    <DownloadButton renderedImage={renderedImage} />
-
-                    <div className="mt-4">
-                        <label htmlFor="whatsappNumber" className="block text-gray-700 text-sm font-bold mb-2">WhatsApp අංකය:</label>
-                        <input
-                            type="text"
-                            id="whatsappNumber"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            value={whatsappNumber}
-                            onChange={(e) => setWhatsappNumber(e.target.value)}
-                            placeholder="උදා: 947xxxxxxxx"
-                        />
-                        <button
-                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2"
-                            onClick={handleWhatsappShare}
-                        >
-                            WhatsApp වෙත යවන්න
-                        </button>
-                    </div>
-
-                    <div className="mt-4">
-                        <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">ඊමේල් ලිපිනය:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="ඔබගේ ඊමේල් ලිපිනය"
-                        />
-                        <button
-                            className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2"
-                            onClick={handleEmailShare}
-                        >
-                            ඊමේල් කරන්න
-                        </button>
-                    </div>
-                </div>
-            )}
+        <div
+            className="h-screen bg-cover bg-center flex items-center justify-center"
+            style={{ backgroundImage: `url(${bgImage})` }}
+        >
+            <div className="text-center bg-opacity-50 p-6 rounded-xl">
+                <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                    Discover the Festivals that Bring Sri Lanka to Life
+                </h1>
+                <div className="flex justify-center gap-4">
+                    <button
+                        className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                        Explore Festivals
+                    </button>
+                    <button type="button"
+                            className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">View Calendar
+                </button>
+            </div>
         </div>
-    );
+</div>
+)
+    ;
 };
 
-export default Home;
+export default Homes;
