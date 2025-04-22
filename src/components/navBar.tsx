@@ -1,73 +1,58 @@
-import { AppBar, Toolbar, Typography, Button, Box, Select, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
-import React from 'react';
-import logo from '../assets/react.svg'; // Adjust the path as necessary
+import React, { useState } from "react";
 
-const NavBar = () => {
-    const [language, setLanguage] = React.useState('en');
+const Navbar = () => {
+    const [language, setLanguage] = useState<"si" | "ta" | "en">("si");
 
-    const handleLanguageChange = (event: any) => {
-        setLanguage(event.target.value);
+    const labels = {
+        si: {
+            home: "මුල් පිටුව",
+            about: "අපි ගැන",
+            events: "අවස්ථා",
+            gallery: "පිංතූර ගොනුව",
+            contact: "සම්බන්ධවන්න"
+        },
+        ta: {
+            home: "முகப்பு",
+            about: "எங்களை பற்றி",
+            events: "நிகழ்வுகள்",
+            gallery: "காட்சிப்பதிவு",
+            contact: "தொடர்பு கொள்ள"
+        },
+        en: {
+            home: "Home",
+            about: "About",
+            events: "Events",
+            gallery: "Gallery",
+            contact: "Contact"
+        }
     };
 
     return (
-        <Box
-            sx={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 1100,
-                /*mx: 2, // margin left and right*/
-                borderRadius: 2,
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-            }}
-        >
-            <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent' }}>
-                <Toolbar>
-                    {/* Logo */}
-                    <Box component={Link} to="/" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit', mr: 2 }}>
-                        <img src={logo} alt="Logo" style={{ height: 40, marginRight: 10 }} />
-                        <Typography variant="h6" noWrap>
-                            Sri Lanka Event Calendar
-                        </Typography>
-                    </Box>
+        <nav className="fixed top-0 w-full bg-white shadow-md p-4 flex items-center justify-between z-50">
+            {/* Website Name */}
+            <div className="text-2xl font-bold text-red-600">Sri Lankan Festivals</div>
 
-                    {/* Navigation Buttons */}
-                    <Box sx={{ flexGrow: 1 }}>
-                        <Button color="inherit" component={Link} to="/">Home</Button>
-                        <Button color="inherit" component={Link} to="/about">About</Button>
-                        <Button color="inherit" component={Link} to="/helps">Helps</Button>
-                    </Box>
+            {/* Nav Links */}
+            <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
+                <li className="hover:text-red-500 cursor-pointer">{labels[language].home}</li>
+                <li className="hover:text-red-500 cursor-pointer">{labels[language].about}</li>
+                <li className="hover:text-red-500 cursor-pointer">{labels[language].events}</li>
+                <li className="hover:text-red-500 cursor-pointer">{labels[language].gallery}</li>
+                <li className="hover:text-red-500 cursor-pointer">{labels[language].contact}</li>
+            </ul>
 
-                    {/* Language Selector */}
-                    <Select
-                        value={language}
-                        onChange={handleLanguageChange}
-                        variant="outlined"
-                        size="small"
-                        sx={{
-                            color: 'white',
-                            borderColor: 'white',
-                            '& .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'rgba(255, 255, 255, 0.5)',
-                            },
-                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'white',
-                            },
-                            '& .MuiSvgIcon-root': {
-                                color: 'white',
-                            },
-                        }}
-                    >
-                        <MenuItem value="en">English</MenuItem>
-                        <MenuItem value="si">සිංහල</MenuItem>
-                        <MenuItem value="ta">தமிழ்</MenuItem>
-                    </Select>
-                </Toolbar>
-            </AppBar>
-        </Box>
+            {/* Language Select */}
+            <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as "si" | "ta" | "en")}
+                className="text-sm border px-3 py-1 rounded text-gray-700 font-medium hover:bg-gray-100"
+            >
+                <option value="si">සිංහල</option>
+                <option value="ta">தமிழ்</option>
+                <option value="en">English</option>
+            </select>
+        </nav>
     );
 };
 
-export default NavBar;
+export default Navbar;
