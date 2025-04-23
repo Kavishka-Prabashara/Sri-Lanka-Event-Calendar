@@ -3,3 +3,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+nav.sticky { /* Or whatever selector you are using for your navbar */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example for shadow-md */
+    padding: 1rem; /* Example for p-4 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
