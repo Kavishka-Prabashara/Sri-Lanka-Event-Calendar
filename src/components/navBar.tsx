@@ -65,11 +65,6 @@ const Navbar = () => {
                     {labels[language].events}
                 </Link>
             </li>
-            <li>
-                <Link to="/helps" className="hover:text-red-500 cursor-pointer">
-                    {labels[language].contact}
-                </Link>
-            </li>
         </ul>
     );
 
