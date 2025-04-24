@@ -15,3 +15,5 @@ nav.sticky { /* Or whatever selector you are using for your navbar */
     align-items: center;
     justify-content: space-between;
 }
+body{
+    background: #1A1A1A;}
