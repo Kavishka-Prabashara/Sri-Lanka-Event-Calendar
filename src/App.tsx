@@ -6,7 +6,6 @@ import About from './pages/about';
 import Helps from './pages/helps';
 import './App.css';
 import CalendarPage from "./pages/calendarPage";
-import MayDayPage from './pages/mayDay';
 import VesakPage from './pages/vesakFestival';
 import HolidayPage from './pages/HoliDayPages.com'; // HolidayPage එක ආනයනය කරන්න
 
@@ -31,7 +30,6 @@ function App() {
                 <Route path="/" element={<HomeWithAbout />} />
                 <Route path="/helps" element={<Helps />} />
                 <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/mayDay" element={<MayDayPage />} /> {/* මැයි දින සැමරුම සඳහා route එක */}
                 <Route path="/vesak" element={<VesakPage />} /> {/* වෙසක් සඳහා route එක */}
                 <Route path="/holiday/:date" element={<HolidayPage />} /> {/* නිවාඩු දින සඳහා route එක */}
             </Routes>
