@@ -2,7 +2,7 @@
 
 const AboutSriLanka = () => {
     return (
-        <section className="w-full py-16 bg-[#f8fafc] text-gray-800">
+        <section className="w-full py-16 text-white">
             <div className="max-w-5xl mx-auto px-4">
                 <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
                     ශ්‍රී ලංකාව ගැන / About Sri Lanka

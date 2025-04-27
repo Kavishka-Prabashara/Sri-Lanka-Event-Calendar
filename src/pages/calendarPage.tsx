@@ -18,7 +18,7 @@ const festivals = [
 
 const CalenderPage = () => {
     return (
-        <div className="bg-gray-100 min-h-screen py-10 px-4">
+        <div className=" min-h-screen py-10 px-4">
             <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">Sri Lanka Festivals & Events</h1>
             <div className="flex flex-col items-center space-y-8">
                 {festivals.map((festival, index) => (
