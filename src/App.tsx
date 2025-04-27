@@ -30,7 +30,7 @@ function App() {
                 <Route path="/" element={<HomeWithAbout />} />
                 <Route path="/helps" element={<Helps />} />
                 <Route path="/calendar" element={<CalendarPage />} />
-                <Route path="/vesak" element={<VesakPage />} /> {/* වෙසක් සඳහා route එක */}
+                <Route path="/calendar/vesak" element={<VesakPage />} />
                 <Route path="/holiday/:date" element={<HolidayPage />} /> {/* නිවාඩු දින සඳහා route එක */}
             </Routes>
         </Router>
