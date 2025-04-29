@@ -7,7 +7,9 @@ import Helps from './pages/helps';
 import './App.css';
 import CalendarPage from "./pages/calendarPage";
 import VesakPage from './pages/vesakFestival';
-import HolidayPage from './pages/HoliDayPages.com'; // HolidayPage එක ආනයනය කරන්න
+import HolidayPage from './pages/HoliDayPages.com';
+import VesakThoranaPage from './pages/ThoranaPages';
+import VesakCardsPage from './pages/VesakCardPage';
 
 function HomeWithAbout() {
     return (
