@@ -32,6 +32,8 @@ function App() {
                 <Route path="/calendar" element={<CalendarPage />} />
                 <Route path="/calendar/vesak" element={<VesakPage />} />
                 <Route path="/holiday/:date" element={<HolidayPage />} /> {/* නිවාඩු දින සඳහා route එක */}
+                <Route path="/calendar/vesak/thorana" element={<VesakThoranaPage />} />
+                <Route path="/calendar/vesak/cards" element={<VesakCardsPage />} />
             </Routes>
         </Router>
     );
