@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import BGMusic from '../components/BGMusic.mp3';
+import BGMusic from '../components/BgMusic.m4a';
 import Thorana from '../components/Thorana.mp4';
 
 const VesakThoranaPage = () => {
